@@ -14,6 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     }
     $_SESSION['form_name'] = '';
     session_destroy();
+    $messages[] = '<br>';
+    $table = $_COOKIE['table'];
+    foreach($table as $row){
+        foreach($row as $chank){
+            $messages[] = $chank;
+        }
+        $messages[] = '<br>';
+    }
+    setcookie('table', '', time() -1000);
     include('forms.php');
     include('main-page.php');
 }
@@ -35,8 +44,10 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
             //select * from Products where substr(name_prod, 1, 1) = 'c';
             $select = "select * from Products where substr(name_prod, 1, " . strlen($_POST['product']) . ") = '" . $_POST['product'] . "';";
             $result = $db->query($select);
-            $row = $result->fetch();
-
+            while($row = $result->fetch()){
+                $table_data[] = $row;
+            }
+            setcookie('table', $table_data);
             $mas[] = "Успешно полученно";
         }
         else if($_POST["form_name"] == 'form_3'){
