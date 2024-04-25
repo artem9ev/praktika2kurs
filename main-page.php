@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-    <title>task 4</title>
+    <title>Практика</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="mainStyle.css" media="screen" />
     <?php echo "<script>var selectedForm=$selectedForm</script>"; ?>
