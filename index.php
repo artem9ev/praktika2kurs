@@ -14,7 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     }
     $_SESSION['form_name'] = '';
     session_destroy();
-    $messages[] = $_COOKIE['table'];
+    if(!empty($_COOKIE['table'])){
+        $messages[] = $_COOKIE['table'];
+    }
     $messages[] = '<br>';
     $table = empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
     foreach($table as $row){
