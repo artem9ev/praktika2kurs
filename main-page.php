@@ -5,10 +5,15 @@
     <title>task 4</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="mainStyle.css" media="screen" />
+    <?php echo "<script>var selectedForm=$selectedForm</script>"; ?>
     <script>
         var formlist = ['form_1', 'form_2', 'form_3', 'form_4', 'form_5', 'form_6', 'form_7'];
-        // var formBlock = document.getElementById(element);
-        // formBlock.classList.add('invisible');
+        function SelectFormOnGet(){
+            if (selectedForm!=''){
+                var formBlock = document.getElementById(selectedForm);
+                formBlock.classList.remove('invisible');
+            }
+        }
         function ShowForm(formID) {
             formlist.forEach(element => {
                 var formBlock = document.getElementById(element);
@@ -32,51 +37,20 @@
     <button onclick="ShowForm('form_3')" name="button3">Form3</button>
 
     <div class="formContainer">
-        <div id="form_1" class="invisible">
-            <form action="index.php" method="POST" id="svyaz">
-                <label>
-                    <strong> Фамилия имя отчество:</strong>
-                    <br>
-                    <input name="fio" type="text" placeholder="ФИО" />
-                </label>
-                <!-- <br>
-                <label>
-                    <strong>Должность: </strong>
-                    <br>
-                    <input name="job" type="text" placeholder="должность" />
-                </label> -->
-                <input type="submit" value="Найти сотрудника" />
-            </form>
-        </div>
-        <div id="form_2" class="invisible">
-            <form action="index.php" method="POST" id="svyaz">
-                <label>
-                    <strong>Товар:</strong>
-                    <br>
-                    <input name="product" type="text" placeholder="название товара" />
-                </label>
-                <!-- <br>
-                <label>
-                    <strong>Цена: </strong>
-                    <br>
-                    <input name="price" type="text" placeholder="цена товара" />
-                </label> -->
-                <br>
-                <input type="submit" value="Найти товар" />
-            </form>
-        </div>
-        <div id="form_3" class="invisible">
-            <form action="index.php" method="POST" id="svyaz">
-                <label>
-                    <strong>Должность:</strong>
-                    <br>
-                    <input name="job" type="text" placeholder="название должности" />
-                </label>
-                <br>
-                <input type="submit" value="Найти людей с должностью" />
-            </form>
-        </div>
+        <?php foreach($forms as $form){ // добавляю формы из forms.php
+            echo $form;
+        } ?>
     </div>
+    <script>SelectFormOnGet()</script>
+    <?php
+    if (!empty($messages)) {
+      print('<div id="messages">');
+      foreach ($messages as $message) {
+        print($message);
+      }
+      print('</div>');
+    }
+    ?>
 </body>
 
 </html>
