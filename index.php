@@ -48,7 +48,11 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $select = "select * from Products where substr(name_prod, 1, " . strlen($_POST['product']) . ") = '" . $_POST['product'] . "';";
             $result = $db->query($select);
             while($row = $result->fetch()){
-                $table_data[] = $row;
+                $newrow = array();
+                $newrow[] = $row['id_prod'];
+                $newrow[] = $row['name_prod'];
+                $newrow[] = $row['price_prod'];
+                $table_data[] = $newrow;
             }
             setcookie('table', serialize($table_data));
             $mas[] = "Успешно полученно";
