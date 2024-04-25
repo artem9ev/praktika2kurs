@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $_SESSION['form_name'] = '';
     session_destroy();
     $messages[] = '<br>';
-    $table = !empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
+    $table = empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
     foreach($table as $row){
         foreach($row as $chank){
             $messages[] = $chank;
