@@ -15,12 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $_SESSION['form_name'] = '';
     session_destroy();
     $messages[] = '<br>';
-    $table = $_COOKIE['table'];
-    foreach($table as $row){
-        foreach($row as $chank){
-            $messages[] = $chank;
+    if(!empty($_COOKIE['table'])){
+        $table = $_COOKIE['table'];
+        foreach($table as $row){
+            foreach($row as $chank){
+                $messages[] = $chank;
+            }
+            $messages[] = '<br>';
         }
-        $messages[] = '<br>';
     }
     setcookie('table', '', time() -1000);
     include('forms.php');
