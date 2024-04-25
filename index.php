@@ -15,14 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $_SESSION['form_name'] = '';
     session_destroy();
     $messages[] = '<br>';
-    if(!empty($_COOKIE['table'])){
-        $table = $_COOKIE['table'];
-        foreach($table as $row){
-            foreach($row as $chank){
-                $messages[] = $chank;
-            }
-            $messages[] = '<br>';
+    $table = !empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
+    foreach($table as $row){
+        foreach($row as $chank){
+            $messages[] = $chank;
         }
+        $messages[] = '<br>';
     }
     setcookie('table', '', time() -1000);
     include('forms.php');
@@ -49,7 +47,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
             while($row = $result->fetch()){
                 $table_data[] = $row;
             }
-            setcookie('table', $table_data);
+            setcookie('table', serialize($table_data));
             $mas[] = "Успешно полученно";
         }
         else if($_POST["form_name"] == 'form_3'){
