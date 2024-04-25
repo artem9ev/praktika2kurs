@@ -14,17 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     }
     $_SESSION['form_name'] = '';
     session_destroy();
-    if(!empty($_COOKIE['table'])){
-        $messages[] = $_COOKIE['table'];
-    }
-    $messages[] = '<br>';
     $table = empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
-    foreach($table as $row){
-        foreach($row as $chank){
-            $messages[] = $chank;
-        }
-        $messages[] = '<br>';
-    }
     setcookie('table', '', time() -1000);
     include('forms.php');
     include('main-page.php');

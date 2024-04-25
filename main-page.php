@@ -41,6 +41,17 @@
             echo $form;
         } ?>
     </div>
+    <div>
+        <table>
+            <?php foreach($table as $row){
+                echo '<tr>';
+                foreach($row as $cell){
+                    echo '<td>' . $cell . '</td>';
+                }
+                echo '</tr>';
+            } ?>
+        </table>
+    </div>
     <script>SelectFormOnGet()</script>
     <?php
     if (!empty($messages)) {
