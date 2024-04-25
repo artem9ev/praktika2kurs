@@ -4,7 +4,7 @@
 <head>
     <title>Практика</title>
     <meta charset="UTF-8">
-    <?php echo '<link rel="stylesheet" type="text/css" href="mainStyle.css" media="screen" />'; ?>
+    <?php echo '<link rel="stylesheet" type="text/css" href="mainStyle_1.css" media="screen" />'; ?>
     <?php echo "<script>var selectedForm=$selectedForm</script>"; ?>
     <script>
         var formlist = ['form_1', 'form_2', 'form_3', 'form_4', 'form_5', 'form_6', 'form_7'];
