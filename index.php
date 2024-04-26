@@ -37,7 +37,8 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
             //select * from Products where substr(name_prod, 1, 1) = 'c';
             $select = "select * from Products where substr(name_prod, 1, :lengthName) = ':productName';";
             $result = $db->query($select);
-            $result->bindParam(":lengthName", strlen($_POST['product']));
+            $str_len = strlen($_POST['product']);
+            $result->bindParam(":lengthName", $str_len);
             $result->bindParam(":productName", $_POST['product']);
             $table_data[] = array('id', 'name', 'price');
             while($row = $result->fetch()){
