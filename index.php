@@ -45,6 +45,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $newrow[] = $row['name_prod'];
                 $newrow[] = $row['price_prod'];
                 $table_data[] = $newrow;
+                echo $newrow . '<br>';
             }
             setcookie('table', serialize($table_data));
             $mas[] = "Успешно полученно";
