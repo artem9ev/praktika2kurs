@@ -29,29 +29,39 @@
 </head>
 
 <body>
-    <h3>Главная страница</h3>
-    <hr><br>
+    <div>
+        <h3>Главная страница</h3>
+        <hr><br>   
+    </div>
 
     <button onclick="ShowForm('form_1')" name="button1">Form1</button>
     <button onclick="ShowForm('form_2')" name="button2">Form2</button>
     <button onclick="ShowForm('form_3')" name="button3">Form3</button>
 
-    <div class="formContainer">
-        <?php foreach($forms as $form){ // добавляю формы из forms.php
-            echo $form;
-        } ?>
+
+    <div class="flex-container">
+        <div class="formContainer flex-item">
+            <div class="">
+                <?php foreach($forms as $form){ // добавляю формы из forms.php
+                    echo $form;
+                } ?>
+            </div>
+        </div>
+        <div class="tableContainer flex-item">
+            <div class="">
+                <table>
+                    <?php foreach($table as $row){
+                        echo '<tr>';
+                        foreach($row as $cell){
+                            echo '<td>' . $cell . '</td>';
+                        }
+                        echo '</tr>';
+                    } ?>
+                </table>
+            </div>
+        </div>
     </div>
-    <div>
-        <table>
-            <?php foreach($table as $row){
-                echo '<tr>';
-                foreach($row as $cell){
-                    echo '<td>' . $cell . '</td>';
-                }
-                echo '</tr>';
-            } ?>
-        </table>
-    </div>
+
     <script>SelectFormOnGet()</script>
     <?php
     if (!empty($messages)) {

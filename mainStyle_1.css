@@ -1,3 +1,7 @@
+html {
+    min-height: 100%;
+}
+
 .invisible {
     display: none;
 }
@@ -5,6 +9,33 @@
 .formfield {
     min-width: 200px;
     max-width: 200px;
+}
+
+.formContainer {
+    padding: 20px;
+    width: 40%;
+    border-right: 1px solid #000000;
+}
+
+.tableContainer {
+    padding: 20px;
+    width: 60%;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    margin-top: 20px;
+    width: 100%;
+    min-height: 500px;
+}
+
+.flex-item {
+    /* flex: 1; */
+    height: 100%;
 }
 
 /* Стили для таблицы */
