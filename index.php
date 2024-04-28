@@ -35,10 +35,10 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
         else if($_POST["form_name"] == 'form_2'){
             //select * from Products where substr(name_prod, 1, 1) = 'c';
-            $select = "select * from Products where substr(name_prod, 1, ?) = '?';";
-            $result = $db->prepare($select);
             $len = strlen($_POST['product']);
-            $result->execute([$len, $_POST['product']]);
+            $name = $_POST['product'];
+            $select = "select * from Products where substr(name_prod, 1, $len) = '$name';";
+            $result = $db->query($select);
             $table_data[] = array('id', 'name', 'price');
             while($row = $result->fetch()){
                 $newrow = array();
