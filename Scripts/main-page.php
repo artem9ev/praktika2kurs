@@ -4,7 +4,7 @@
 <head>
     <title>Практика</title>
     <meta charset="UTF-8">
-    <?php echo '<link rel="stylesheet" type="text/css" href="mainStyle_1.css" media="screen" />'; ?>
+    <?php print '<link rel="stylesheet" type="text/css" href="Data/mainStyle.css" media="screen" />'; ?>
     <?php echo "<script>var selectedForm=$selectedForm</script>"; ?>
     <script>
         var formlist = ['form_1', 'form_2', 'form_3', 'form_4', 'form_5', 'form_6', 'form_7'];
@@ -40,14 +40,21 @@
 
 
     <div class="flex-container">
-        <div class="formContainer flex-item">
+        <div class="flex-item">
             <div class="">
                 <?php foreach($forms as $form){ // добавляю формы из forms.php
                     echo $form;
                 } ?>
             </div>
         </div>
-        <div class="tableContainer flex-item">
+        <div class="flex-item">
+            <div class="">
+                <?php foreach($forms as $form){ // добавляю формы из forms.php
+                    echo $form;
+                } ?>
+            </div>
+        </div>
+        <div class="flex-item">
             <div class="">
                 <table>
                     <?php foreach($table as $row){

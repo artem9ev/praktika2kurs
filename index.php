@@ -16,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     session_destroy();
     $table = empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
     setcookie('table', '', time() -1000);
-    include('forms.php');
-    include('main-page.php');
+    include('Scripts/forms.php');
+    include('Scripts/main-page.php');
 }
 elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    include('../../web-backend/SecretData.php');
+    include('Scripts/SecretData.php');
     $servername = "localhost";
     $username = user;
     $password = pass;
@@ -37,7 +37,8 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
             //select * from Products where substr(name_prod, 1, 1) = 'c';
             $select = "select * from Products where substr(name_prod, 1, ?) = '?';";
             $result = $db->prepare($select);
-            $result->execute([strlen($_POST['product']), $_POST['product']]);
+            $len = strlen($_POST['product']);
+            $result->execute([$len, $_POST['product']]);
             $table_data[] = array('id', 'name', 'price');
             while($row = $result->fetch()){
                 $newrow = array();
