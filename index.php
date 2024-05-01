@@ -38,13 +38,15 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $select = "select * from Products where substr(name_prod, 1, $len) = '$name';";
             $result = $db->query($select);
             $table_data[] = array('id', 'name', 'price'); // добавляю первую строку в таблицу
-            echo "Пытаюсь взять столбцы<br>";
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
-                $table_data[] = array($row['id_prod'], $row['name_prod'], $row['price_prod']);
+                $newrow = array();
+                $newrow[] = $row['id_prod']; // присваиваю значения по именам столбцов из таблицы в бд
+                $newrow[] = $row['name_prod'];
+                $newrow[] = $row['price_prod'];
+                $table_data[] = $newrow;
             }
             setcookie('table', serialize($table_data)); // сохраняю табличку в куки
             $mas[] = "Успешно полученно";
-            echo "Успешно полученно<br>";
         }
         else if($_POST["form_name"] == 'form_3'){
     
@@ -53,9 +55,10 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
     catch(PDOException $e){
         $mas[] = 'Error : ' . $e->getMessage();
         echo 'Error : ' . $e->getMessage() . '<br>';
+
         exit();
     }
-    setcookie('form_name', $_POST['form_name']);
+    setcookie('form_name', $_POST['form_name']); // 
     setcookie('mas', serialize($mas));
     //session_destroy();
     header('Location: index.php'); // Делаем перенаправление.
