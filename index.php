@@ -39,11 +39,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $result = $db->query($select);
             $table_data[] = array('id', 'name', 'price'); // добавляю первую строку в таблицу
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
-                $newrow = array();
-                $newrow[] = $row['id_prod']; // присваиваю значения по именам столбцов из таблицы в бд
-                $newrow[] = $row['name_prod'];
-                $newrow[] = $row['price_prod'];
-                $table_data[] = $newrow;
+                $table_data[] = [$row['id_prod'], $row['name_prod'], $row['price_prod']];
             }
             setcookie('table', serialize($table_data)); // сохраняю табличку в куки
             $mas[] = "Успешно полученно";
