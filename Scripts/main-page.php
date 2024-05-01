@@ -48,10 +48,10 @@
                 } ?>
             </div>
         </div>
-        <div class="table-item">
+        <div class="table-item"> 
             <div class="">
                 <table>
-                    <?php foreach($table as $row){
+                    <?php foreach($table as $row){ // прохожусь по массиву, доставая из него табличку
                         echo '<tr>';
                         foreach($row as $cell){
                             echo '<td>' . $cell . '</td>';
