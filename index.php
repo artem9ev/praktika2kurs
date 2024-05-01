@@ -5,13 +5,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     if(!empty($_COOKIE['form_name'])){
         $selectedForm = "'" . $_COOKIE['form_name'] . "'";
     }
+    setcookie('form_name', '', time() - 3600);
+
     if(!empty($_COOKIE['mas'])){
         $mas = unserialize($_COOKIE['mas']);
         foreach($mas as $m){
             $messages[] = $m;
         }
     }
-    setcookie('form_name', '', time() - 3600);
     $table = empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
     setcookie('table', '', time() -1000);
     include('Scripts/forms.php'); // загрузил файл с формами
@@ -55,8 +56,8 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $mas[] = 'Error : ' . $e->getMessage();
         exit();
     }
-    setcookie('form_name', $_POST['form_name'], time() - 3600);
-    setcookie('mas', serialize($mas), time() - 3600);
+    setcookie('form_name', $_POST['form_name']);
+    setcookie('mas', serialize($mas));
     //session_destroy();
     header('Location: index.php'); // Делаем перенаправление.
 }
