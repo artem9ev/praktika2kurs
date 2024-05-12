@@ -21,13 +21,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $dbname = user;
     $table_data = array(); // делаю массив для сохранения таблицы из бд
 
+    $formName = '';
+    if (!empty($_COOKIE["form_name"])){
+        $formName = $_COOKIE["form_name"];
+    }
     try {
         $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        if($_POST["form_name"] == 'form_1'){
+        if($formName == 'form_1'){
 
         }
-        else if($_POST["form_name"] == 'form_2'){
+        else if($formName == 'form_2'){
             $len = strlen($_COOKIE['product']);
             $name = $_COOKIE['product'];
             $select = "select * from Products WHERE SUBSTR(name, 1, $len) = '$name';";
@@ -39,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             }
             $messages[] = "Успешно полученно";
         }
-        else if($_POST["form_name"] == 'form_3'){
+        else if($formName == 'form_3'){
     
         }
     }
