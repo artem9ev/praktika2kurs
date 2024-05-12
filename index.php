@@ -3,6 +3,7 @@ header('Cache-Control: no-cache, must-revalidate');
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+    $isStarted = session_start();
     $messages = array();
     $selectedForm = "''";
     if(!empty($_COOKIE['form_name'])){
@@ -16,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $messages[] = $m;
         }
     }
-    $table = empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
-    echo 'count = ' . count($table) . '<br>' . empty($_COOKIE['table']) ? '' : $_COOKIE['table'] . '<br>';
+    $table = ($isStarted && !empty($_COOKIE[session_name()])) ? unserialize($_COOKIE['table']) : array('empty');
+    echo 'count = ' . count($table) . '<br>' . ($isStarted && !empty($_COOKIE[session_name()])) ? $_COOKIE['table'] : '' . '<br>';
     setcookie('table', '', time() -1000);
     include('Scripts/forms.php'); // загрузил файл с формами
     include('Scripts/main-page.php'); // загружаю основную страницу
@@ -30,6 +31,8 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $dbname = user;
     $mas = array();
     $table_data = array(); // делаю массив для сохранения таблицы из бд
+
+    session_start();
     try {
         $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
@@ -46,7 +49,8 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $table_data[] = array($row['id'], $row['name'], $row['weight'], $row['buy_price'], $row['sale_price'], $row['provider_id']);
                 echo $row['id'] . " " . $row['name']. " " . $row['weight']. " " . $row['buy_price']. " " . $row['sale_price']. " " . $row['provider_id'] . '<br>';
             }
-            setcookie('table', serialize($table_data)); // сохраняю табличку в куки
+            $_SESSION['table'] = serialize($table_data);
+            //setcookie('table', serialize($table_data)); // сохраняю табличку в куки
             $mas[] = "Успешно полученно";
         }
         else if($_POST["form_name"] == 'form_3'){
