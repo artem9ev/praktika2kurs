@@ -39,7 +39,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
         else if($_POST["form_name"] == 'form_2'){
             $len = strlen($_POST['product']);
             $name = $_POST['product'];
-            $select = "select * from Products;";
+            $select = "select * from Products WHERE SUBSTR(name, 1, $len) = '$name';";
             $result = $db->query($select);
             $table_data[] = array('id', 'name', 'weight', 'buy_price', 'sale_price', 'provider_id'); // добавляю первую строку в таблицу
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
