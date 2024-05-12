@@ -38,10 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $select = "select * from Products WHERE SUBSTR(name, 1, $len) = '$name';";
             $result = $db->query($select);
             $table_data[] = array('id', 'name', 'weight', 'buy_price', 'sale_price', 'provider_id'); // добавляю первую строку в таблицу
-            while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
-                $table_data[] = array($row['id'], $row['name'], $row['weight'], $row['buy_price'], $row['sale_price'], $row['provider_id']);
-                echo "yy - " . $row['id'] . " " . $row['name']. " " . $row['weight']. " " . $row['buy_price']. " " . $row['sale_price']. " " . $row['provider_id'] . '<br>';
-            }
+            $table_data[] =  $result->fetchAll();
+            // while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
+            //     $table_data[] = array($row['id'], $row['name'], $row['weight'], $row['buy_price'], $row['sale_price'], $row['provider_id']);
+            //     echo "yy - " . $row['id'] . " " . $row['name']. " " . $row['weight']. " " . $row['buy_price']. " " . $row['sale_price']. " " . $row['provider_id'] . '<br>';
+            // }
             $messages[] = "Успешно полученно";
         }
         else if($formName == 'form_3'){
