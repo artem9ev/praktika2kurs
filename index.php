@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $result = $db->query($select);
             $table_data[] = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ПОСТАВЩИК'); // добавляю первую строку в таблицу
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
-                echo "s - " . serialize($row) . "<br>";
+                //echo "s - " . serialize($row) . "<br>";
                 $table_data[] = 
                     array($row['id'], $row['name'], $row['weight'], $row['buy_price'], $row['sale_price'], $row['provider_name']);
             }
