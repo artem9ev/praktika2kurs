@@ -12,7 +12,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
     $v = rand();
     echo "<link rel='stylesheet' type='text/css' href='Data/mainStyle.css?v=$v' media='screen' />";
     echo "<link rel='stylesheet' type='text/css' href='Data/tables.css?v=$v' media='screen' />";
-    echo "<script>var selectedForm=$selectedForm</script>"; 
+    echo "<script>var selectedForm='$selectedForm'</script>"; 
     ?>
     <script>
         var formlist = ['form_1', 'form_2', 'form_3', 'form_4', 'form_5', 'form_6', 'form_7'];
