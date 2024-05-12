@@ -37,10 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $name = $_COOKIE['product'];
             }
             $len = strlen($name) / 2;
-            echo "prod $len:$name<br>";
-            $select = "SELECT * FROM Products WHERE SUBSTR(name, 1, $len) = '$name';";
+            $select = "SELECT f.id, f.name, f.weight, f.buy_price, f.sale_price, s.name
+             FROM Products f, Providers s WHERE SUBSTR(name, 1, $len) = '$name' AND f.provider_id = s.id;";
             $result = $db->query($select);
-            $table_data[] = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ID ПОСТАВЩИКА'); // добавляю первую строку в таблицу
+            $table_data[] = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ПОСТАВЩИК'); // добавляю первую строку в таблицу
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
                 $table_data[] = 
                     array($row['id'], $row['name'], $row['weight'], $row['buy_price'], $row['sale_price'], $row['provider_id']);

@@ -71,20 +71,6 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
             </div>
         </div>
     </div>
-    <div class="table-item"> 
-        <div class="">
-            <table>
-                <?php foreach($table_data as $row){ // прохожусь по массиву, доставая из него табличку
-                    echo '<tr>';
-                    foreach($row as $cell){
-                        echo '<td>' . $cell . '</td>';
-                    }
-                    echo '</tr>';
-                } ?>
-            </table>
-        </div>
-    </div>
-    
 
     <script>SelectFormOnGet()</script>
     <?php
