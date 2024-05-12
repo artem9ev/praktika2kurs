@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         if($formName == 'form_1'){
 
         }
-        else if($formName == 'form_2'){
-            $len = strlen($_COOKIE['product']);
+        else if($formName == 'form_2' && !empty($_COOKIE['product'])){
+            $len = strlen($_COOKIE['product']) / 2;
             $name = $_COOKIE['product'];
             echo "prod $len:$name<br>";
             $select = "select * from Products WHERE SUBSTR(name, 1, $len) = '$name';";
