@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         }
     }
     $table = empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
-    echo 'count = ' . count($table) . '<br>';
+    echo 'count = ' . count($table) . '<br>' . $_COOKIE['table'] . '<br>';
     setcookie('table', '', time() -1000);
     include('Scripts/forms.php'); // загрузил файл с формами
     include('Scripts/main-page.php'); // загружаю основную страницу
