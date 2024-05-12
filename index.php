@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         else if($formName == 'form_2'){
             $len = strlen($_COOKIE['product']);
             $name = $_COOKIE['product'];
-            echo "prod : " . $name . '<br>';
+            echo "prod $len:$name<br>";
             $select = "select * from Products WHERE SUBSTR(name, 1, $len) = '$name';";
             $result = $db->query($select);
             $table_data[] = array('id', 'name', 'weight', 'buy_price', 'sale_price', 'provider_id'); // добавляю первую строку в таблицу
