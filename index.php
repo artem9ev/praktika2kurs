@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             }
             $len = strlen($name) / 2;
             $select = "SELECT f.id, f.name, f.weight, f.buy_price, f.sale_price, s.name
-             FROM Products f, Providers s WHERE SUBSTR(name, 1, $len) = '$name' AND f.provider_id = s.id;";
+             FROM Products f, Providers s WHERE SUBSTR(f.name, 1, $len) = '$name' AND f.provider_id = s.id;";
             $result = $db->query($select);
             $table_data[] = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ПОСТАВЩИК'); // добавляю первую строку в таблицу
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
