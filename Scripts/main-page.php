@@ -1,12 +1,19 @@
+<?php
+header('Cache-Control: no-cache, must-revalidate');
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <title>Практика</title>
     <meta charset="UTF-8">
-    <?php print '<link rel="stylesheet" type="text/css" href="Data/mainStyle.css" media="screen" />'; ?>
-    <?php print '<link rel="stylesheet" type="text/css" href="Data/tables.css" media="screen" />'; ?>
-    <?php echo "<script>var selectedForm=$selectedForm</script>"; ?>
+    <?php 
+    $v = rand();
+    echo "<link rel='stylesheet' type='text/css' href='Data/mainStyle.css?v=$v' media='screen' />";
+    echo "<link rel='stylesheet' type='text/css' href='Data/tables.css?v=$v' media='screen' />";
+    echo "<script>var selectedForm=$selectedForm</script>"; 
+    ?>
     <script>
         var formlist = ['form_1', 'form_2', 'form_3', 'form_4', 'form_5', 'form_6', 'form_7'];
         function SelectFormOnGet(){
@@ -31,37 +38,41 @@
 
 <body>
     <div>
-        <h3>Главная страница</h3>
+        <h3>Оптовый магазин</h3>
         <hr><br>   
     </div>
 
-    <button onclick="ShowForm('form_1')" name="button1">Form1</button>
-    <button onclick="ShowForm('form_2')" name="button2">Form2</button>
-    <button onclick="ShowForm('form_3')" name="button3">Form3</button>
-
-
-    <div class="flex-container">
-        <div class="form-item">
-            <div class="">
-                <?php foreach($forms as $form){ // добавляю формы из forms.php
-                    echo $form;
-                } ?>
-            </div>
+    <div class="main-content">
+        <div class="links-container">
+            <button class="link-item" onclick="ShowForm('form_1')" name="button1">Form1dafadasxasdadasdaDADADSXASADADASDsxasxcascad</button>
+            <button class="link-item" onclick="ShowForm('form_2')" name="button2">Form2</button>
+            <button class="link-item" onclick="ShowForm('form_3')" name="button3">Form3</button>
         </div>
-        <div class="table-item"> 
-            <div class="">
-                <table>
-                    <?php foreach($table as $row){ // прохожусь по массиву, доставая из него табличку
-                        echo '<tr>';
-                        foreach($row as $cell){
-                            echo '<td>' . $cell . '</td>';
-                        }
-                        echo '</tr>';
+        <div class="content-container">
+            <div class="form-item">
+                <div class="">
+                    <?php foreach($forms as $form){ // добавляю формы из forms.php
+                        echo $form;
                     } ?>
-                </table>
+                </div>
+            </div>
+            <div class="table-item"> 
+                <div class="">
+                    <table>
+                        <?php foreach($table as $row){ // прохожусь по массиву, доставая из него табличку
+                            echo '<tr>';
+                            foreach($row as $cell){
+                                echo '<td>' . $cell . '</td>';
+                            }
+                            echo '</tr>';
+                        } ?>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+
+    
 
     <script>SelectFormOnGet()</script>
     <?php

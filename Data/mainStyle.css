@@ -11,20 +11,48 @@ html {
     max-width: 200px;
 }
 
-.flex-container {
+.main-content {
+    margin: 0 auto;
+    /*центрируем ее*/
+    background: darkgray;
+}
+
+.links-container {
+    float: left;
+    /*Задаем обтекание*/
+    font-size: 40px;
+    color: white;
+    width: 300px;
+    /*Фиксируем ширину блока*/
+    margin-right: 10px;
+    text-align: center;
+    /*Центрируем текст по горизонтали*/
+}
+
+.main-content :last-child {
+    margin-right: 0px;
+    /*Убираем поле последнего div-а*/
+}
+
+.link-item {
+    margin: 5px 0px;
+    width: 95%;
+}
+
+.content-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     padding: 0px 10%;
-    border-top: 1px solid #000000;
-    border-bottom: 1px solid #000000;
+    border-left: 1px solid #000000;
     margin-top: 20px;
     min-height: 500px;
 }
 
 .form-item {
     margin: 5px 0px;
+    width: 50%;
 }
 
 .table-item {

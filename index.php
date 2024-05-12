@@ -1,4 +1,7 @@
 <?php
+header('Cache-Control: no-cache, must-revalidate');
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $messages = array();
     $selectedForm = "''";
@@ -30,16 +33,16 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         if($_POST["form_name"] == 'form_1'){
-    
+            (name, weight, buy_price, sale_price, provider_id)
         }
         else if($_POST["form_name"] == 'form_2'){
             $len = strlen($_POST['product']);
             $name = $_POST['product'];
-            $select = "select * from Products where substr(name_prod, 1, $len) = '$name';";
+            $select = "select * from Products where substr(name, 1, $len) = '$name';";
             $result = $db->query($select);
-            $table_data[] = array('id', 'name', 'price'); // добавляю первую строку в таблицу
+            $table_data[] = array('id', 'name', 'weight', 'buy_price', 'sale_price', 'provider_id'); // добавляю первую строку в таблицу
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
-                $table_data[] = array($row['id_prod'], $row['name_prod'], $row['price_prod']);
+                $table_data[] = array($row['id'], $row['name'], $row['weight'], $row['buy_price'], $row['sale_price'], $row['provider_id']);
             }
             setcookie('table', serialize($table_data)); // сохраняю табличку в куки
             $mas[] = "Успешно полученно";
