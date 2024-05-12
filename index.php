@@ -35,13 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $len = strlen($_COOKIE['product']) / 2;
             $name = $_COOKIE['product'];
             echo "prod $len:$name<br>";
-            $select = "select * from Products WHERE SUBSTR(name, 1, $len) = '$name';";
+            $select = "SELECT * FROM Products WHERE SUBSTR(name, 1, $len) = '$name';";
             $result = $db->query($select);
             $table_data[] = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ID ПОСТАВЩИКА'); // добавляю первую строку в таблицу
-            $table_data[] =  $result->fetchAll();
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
-                $table_data[] = array($row['id'], $row['name'], $row['weight'], $row['buy_price'], $row['sale_price'], $row['provider_id']);
-                echo "yy - " . $row['id'] . " " . $row['name']. " " . $row['weight']. " " . $row['buy_price']. " " . $row['sale_price']. " " . $row['provider_id'] . '<br>';
+                $table_data[] = 
+                    array($row['id'], $row['name'], $row['weight'], $row['buy_price'], $row['sale_price'], $row['provider_id']);
             }
             $messages[] = "Успешно полученно";
         }
