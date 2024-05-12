@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $messages[] = $m;
         }
     }
-    $table = ($isStarted && !empty($_COOKIE[session_name()]) && !empty($_COOKIE['gettedTable']) && !empty($_SESSION['table'])) ? unserialize($_SESSION['table']) : array('empty');
-    echo 'count = ' . count($table) . '<br>' . ($isStarted && !empty($_COOKIE[session_name()]) && !empty($_COOKIE['gettedTable']) && !empty($_SESSION['table'])) ? $_SESSION['table'] : '' . '<br>';
+    $table = ($isStarted && !empty($_COOKIE[session_name()]) && !empty($_COOKIE['gettedTable'])) ? unserialize($_SESSION['table']) : array('empty');
+    echo 'count = ' . count($table) . '<br>' . ($isStarted && !empty($_COOKIE[session_name()]) && !empty($_COOKIE['gettedTable'])) ? $_SESSION['table'] : '' . '<br>';
     setcookie('gettedTable', '', time() - 3600);
     //setcookie('table', '', time() -1000);
     include('Scripts/forms.php'); // загрузил файл с формами
