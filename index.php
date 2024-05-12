@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         }
     }
     $table = empty($_COOKIE['table']) ? array() : unserialize($_COOKIE['table']);
+    echo 'count = ' . count($table) . '<br>';
     setcookie('table', '', time() -1000);
     include('Scripts/forms.php'); // загрузил файл с формами
     include('Scripts/main-page.php'); // загружаю основную страницу
@@ -61,6 +62,6 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
     setcookie('form_name', $_POST['form_name']); // 
     setcookie('mas', serialize($mas));
     //session_destroy();
-    //header('Location: index.php'); // Делаем перенаправление.
+    header('Location: index.php'); // Делаем перенаправление.
 }
 ?>
