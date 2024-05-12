@@ -44,7 +44,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
     <div class="main-content">
         <div class="links-container">
-            <button class="link-item" onclick="ShowForm('form_1')" name="button1">Form1dafadasxasdadasdaDADADSXASADADASDsxasxcascad</button>
+            <button class="link-item" onclick="ShowForm('form_1')" name="button1">Form1</button>
             <button class="link-item" onclick="ShowForm('form_2')" name="button2">Form2</button>
             <button class="link-item" onclick="ShowForm('form_3')" name="button3">Form3</button>
         </div>

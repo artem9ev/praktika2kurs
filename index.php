@@ -62,6 +62,6 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
     setcookie('form_name', $_POST['form_name']); // 
     setcookie('mas', serialize($mas));
     //session_destroy();
-    header('Location: index.php'); // Делаем перенаправление.
+    //header('Location: index.php'); // Делаем перенаправление.
 }
 ?>
