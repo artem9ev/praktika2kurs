@@ -33,7 +33,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         if($_POST["form_name"] == 'form_1'){
-            (name, weight, buy_price, sale_price, provider_id)
+
         }
         else if($_POST["form_name"] == 'form_2'){
             $len = strlen($_POST['product']);
