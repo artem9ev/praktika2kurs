@@ -84,7 +84,7 @@
                     <h2><?php echo $tableTitle ?></h2>
                     <table>
                         <?php 
-                        if(!empty($table_data)){
+                        if(!empty($table_data) && !$isEmpty){
                             foreach($table_data as $row){ // прохожусь по массиву, доставая из него табличку
                                 echo '<tr>';
                                 foreach($row as $cell){
@@ -93,7 +93,7 @@
                                 echo '</tr>';
                             }
                         }
-                        else if($isGetted){
+                        else if($isEmpty){
                             echo '<h2><strong>Нет результатов</strong></h2>';
                         }
                         ?>

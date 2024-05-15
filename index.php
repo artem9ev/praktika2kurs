@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $dbname = user;
     $table_data = array(); // делаю массив для сохранения таблицы из бд
     $tableTitle = ''; // строка для заголовка таблицы
-    $isGetted = false;
+    $isEmpty = false;
 
     $tableToGet = '';
     $formName = '';
@@ -98,11 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $newRow = array();
                 for($i = 0; $i < count($row) / 2; $i++){
                     $newRow[] = $row[$i];
+                    if (empty($row[$i])) { $isEmpty = true; }
                 }
                 $table_data[] = $newRow;
             }
             $messages[] = "Успешно полученно";
-            $isGetted = true;
         }
     }
     catch(PDOException $e){
