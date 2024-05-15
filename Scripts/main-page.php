@@ -43,11 +43,19 @@
             Вывести таблицы:
             <form class="getTableForm" action="index.php" method="POST">
                 <input type="hidden" name="getTable" value="providers">
+                <input class="link-item" type="submit" value="Отобразить производителей" />
+            </form>
+            <form class="getTableForm" action="index.php" method="POST">
+                <input type="hidden" name="getTable" value="products">
+                <input class="link-item" type="submit" value="Отобразить товары" />
+            </form>
+            <form class="getTableForm" action="index.php" method="POST">
+                <input type="hidden" name="getTable" value="salesmans">
                 <input class="link-item" type="submit" value="Отобразить продавцов" />
             </form>
             <form class="getTableForm" action="index.php" method="POST">
-                <input type="hidden" name="getTable" value="providers">
-                <input class="link-item" type="submit" value="Отобразить товары" />
+                <input type="hidden" name="getTable" value="sales">
+                <input class="link-item" type="submit" value="Отобразить продажи" />
             </form>
             Экранные формы:
             <button class="link-item" onclick="ShowForm('form_1')" name="button1">Form1</button>
@@ -64,6 +72,7 @@
             </div>
             <div class="table-item"> 
                 <div class="">
+                    <?php echo $tableTitle ?>
                     <table>
                         <?php foreach($table_data as $row){ // прохожусь по массиву, доставая из него табличку
                             echo '<tr>';
