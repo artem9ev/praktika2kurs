@@ -14,13 +14,8 @@ th {
 
 /* Стили для ячеек */
 td {
-    border: 1px solid #b9b9b9;
+    background-color: #f5f5f5;
+    border: 1px solid #626262;
     color: rgb(0, 0, 0);
     padding: 9px 8px;
-}
-
-/* Стили для строк при наведении */
-tr:hover,
-.highlighted {
-    background-color: #f5f5f5;
 }
