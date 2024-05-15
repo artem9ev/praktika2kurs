@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $newRow = array();
                 for($i = 0; $i < count($row) / 2; $i++){
                     $newRow[] = $row[$i];
-                    if (empty($row[$i])) { $isEmpty = true; }
+                    if ($row[$i] == '') { $isEmpty = true; }
                 }
                 $table_data[] = $newRow;
             }

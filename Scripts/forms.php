@@ -21,7 +21,7 @@ ob_start();
         <input type="hidden" name="form_name" value="form_2">
         <label>
             <h2><strong>Выбор продавцов по значению комиссионных:</strong></h2><br>
-            <input class="formfield" name="comission" type="text" placeholder="название товара" />
+            <input class="formfield" name="comission" type="text" placeholder="0" />
         </label>
         <br>
         <input type="submit" value="Найти товар" />
