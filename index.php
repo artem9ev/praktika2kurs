@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $name = $_COOKIE['fio'];
             }
             $len = strlen($name) / 2;
-            $select = "SELECT * FROM Salesmans s WHERE SUBSTR(s.name, 1, $len) = '$name';";
+            $select = "SELECT * FROM Salesmans WHERE SUBSTR(full_name, 1, $len) = '$name';";
             $result = $db->query($select);
             $table_data[] = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ'); // добавляю первую строку в таблицу
             $tableTitle = "Получены продавцы содержащие в имени: $name";
