@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $dbname = user;
     $table_data = array(); // делаю массив для сохранения таблицы из бд
     $tableTitle = ''; // строка для заголовка таблицы
+    $isGetted = false;
 
     $tableToGet = '';
     $formName = '';
@@ -78,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $tableTitle = "Получены продавцы содержащие в имени: '$name'";
         }
         else if($formName == 'form_2'){
-            $com = '';
+            $com = 0;
             if (!empty($_COOKIE['comission'])){
                 $com = $_COOKIE['comission'];
             }
@@ -101,6 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $table_data[] = $newRow;
             }
             $messages[] = "Успешно полученно";
+            $isGetted = true;
         }
     }
     catch(PDOException $e){

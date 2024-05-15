@@ -93,7 +93,7 @@
                                 echo '</tr>';
                             }
                         }
-                        else{
+                        else if($isGetted){
                             echo '<h2><strong>Нет результатов</strong></h2>';
                         }
                         ?>
