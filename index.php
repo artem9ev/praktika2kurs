@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     try {
         $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        echo $tableToGet;
         if($tableToGet == 'providers'){
             $select = "SELECT * FROM Providers";
             $result = $db->query($select);
