@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         setcookie('form_name', $_POST['form_name'], time() + 3600);
         setcookie('product', $_POST['product'], time() + 3600);
         setcookie('fio', $_POST['fio'], time() + 3600);
+        setcookie('comission', $_POST['comission'], time() + 3600);
     }
 
     header('Location: index.php'); // Делаем перенаправление.
@@ -74,19 +75,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $select = "SELECT * FROM Salesmans WHERE SUBSTR(full_name, 1, $len) = '$name';";
             $result = $db->query($select);
             $table_data[] = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ'); // добавляю первую строку в таблицу
-            $tableTitle = "Получены продавцы содержащие в имени: $name";
+            $tableTitle = "Получены продавцы содержащие в имени: '$name'";
         }
         else if($formName == 'form_2'){
-            $name = '';
-            if (!empty($_COOKIE['product'])){
-                $name = $_COOKIE['product'];
+            $com = '';
+            if (!empty($_COOKIE['comission'])){
+                $com = $_COOKIE['comission'];
             }
-            $len = strlen($name) / 2;
-            $select = "SELECT f.id, f.name, f.weight, f.buy_price, f.sale_price, s.name AS provider_name
-             FROM Products f, Providers s WHERE SUBSTR(f.name, 1, $len) = '$name' AND f.provider_id = s.id;";
+            $select = "SELECT * FROM Salesmans WHERE commision_percentage > $com;";
             $result = $db->query($select);
-            $table_data[] = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ПОСТАВЩИК'); // добавляю первую строку в таблицу
-            $tableTitle = "Получены товары начинающиеся на: $name";
+            $table_data[] = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ'); // добавляю первую строку в таблицу
+            $tableTitle = "Получены продавцы с процентом комиссионных бельше чем: $com";
         }
         else if($formName == 'form_3'){
     
@@ -117,6 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     setcookie('form_name', '', time() - 3600);
     setcookie('product', '', time() - 3600);
     setcookie('fio', '', time() - 3600);
+    setcookie('comission', '', time() - 3600);
 
     include('Scripts/forms.php'); // загрузил файл с формами
     include('Scripts/main-page.php'); // загружаю основную страницу

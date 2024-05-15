@@ -34,7 +34,7 @@
 
 <body>
     <div>
-        <h3>Оптовый магазин</h3>
+        <h1>Оптовый магазин</h1>
         <hr><br>   
     </div>
 
@@ -58,8 +58,8 @@
                 <input class="link-item" type="submit" value="Отобразить продажи" />
             </form>
             <h3>Экранные формы:</h3>
-            <button class="link-item" onclick="ShowForm('form_1')" name="button1">Поиск сотрудников</button>
-            <button class="link-item" onclick="ShowForm('form_2')" name="button2">Form2</button>
+            <button class="link-item" onclick="ShowForm('form_1')" name="button1">Поиск сотрудников по ФИО</button>
+            <button class="link-item" onclick="ShowForm('form_2')" name="button2">Поиск сотрудников по комиссионным</button>
             <button class="link-item" onclick="ShowForm('form_3')" name="button3">Form3</button>
         </div>
         <div class="content-container">
@@ -81,15 +81,22 @@
             ?>
             <div class="table-item"> 
                 <div class="">
-                    <?php echo $tableTitle ?>
+                    <h2><?php echo $tableTitle ?></h2>
                     <table>
-                        <?php foreach($table_data as $row){ // прохожусь по массиву, доставая из него табличку
-                            echo '<tr>';
-                            foreach($row as $cell){
-                                echo '<td>' . $cell . '</td>';
+                        <?php 
+                        if(!empty($table_data)){
+                            foreach($table_data as $row){ // прохожусь по массиву, доставая из него табличку
+                                echo '<tr>';
+                                foreach($row as $cell){
+                                    echo '<td>' . $cell . '</td>';
+                                }
+                                echo '</tr>';
                             }
-                            echo '</tr>';
-                        } ?>
+                        }
+                        else{
+                            echo '<h2><strong>Нет результатов</strong></h2>';
+                        }
+                        ?>
                     </table>
                 </div>
             </div>
