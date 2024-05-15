@@ -6,6 +6,10 @@ html {
     display: none;
 }
 
+.getTableForm {
+    margin: 0px 0px;
+}
+
 .formfield {
     min-width: 200px;
     max-width: 200px;
@@ -20,8 +24,8 @@ html {
 .links-container {
     float: left;
     /*Задаем обтекание*/
-    font-size: 40px;
-    color: white;
+    font-size: 20px;
+    color: black;
     width: 300px;
     /*Фиксируем ширину блока*/
     margin-right: 10px;

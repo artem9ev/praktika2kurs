@@ -40,6 +40,16 @@
 
     <div class="main-content">
         <div class="links-container">
+            Вывести таблицы:
+            <form class="getTableForm" action="index.php" method="POST">
+                <input type="hidden" name="getTable" value="providers">
+                <input class="link-item" type="submit" value="Отобразить продавцов" />
+            </form>
+            <form class="getTableForm" action="index.php" method="POST">
+                <input type="hidden" name="getTable" value="providers">
+                <input class="link-item" type="submit" value="Отобразить товары" />
+            </form>
+            Экранные формы:
             <button class="link-item" onclick="ShowForm('form_1')" name="button1">Form1</button>
             <button class="link-item" onclick="ShowForm('form_2')" name="button2">Form2</button>
             <button class="link-item" onclick="ShowForm('form_3')" name="button3">Form3</button>
