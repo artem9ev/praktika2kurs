@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(!empty($result)){
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
                 $newRow = array();
-                if (empty($row[$i])) { $isEmpty = true; break; }
+                if (empty($row)) { $isEmpty = true; break; }
                 for($i = 0; $i < count($row) / 2; $i++){
                     $newRow[] = $row[$i];
                 }

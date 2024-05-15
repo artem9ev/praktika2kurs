@@ -8,7 +8,7 @@ $forms = array(); ?>
             <input class="formfield" name="fio" type="text" placeholder="ФИО" />
         </label>
         <br>
-        <input class="formfield" type="submit" value="Найти сотрудника" />
+        <input class="formfield" type="submit" value="Найти сотрудников" />
     </form>
 </div>
 <?php 
@@ -24,7 +24,7 @@ ob_start();
             <input class="formfield" name="comission" type="text" placeholder="0" />
         </label>
         <br>
-        <input type="submit" value="Найти товар" />
+        <input type="submit" value="Найти сотрудников" />
     </form>
 </div>
 <?php 
