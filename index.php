@@ -82,8 +82,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         }
         if(!empty($result)){
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
-                $table_data[] = 
-                    array($row['id'], $row['name'], $row['weight'], $row['buy_price'], $row['sale_price'], $row['provider_name']);
+                $newRow = array();
+                for($i = 0; $i < count($row) / 2; $i++){
+                    $newRow[] = $row[$i];
+                }
+                $table_data[] = $newRow;
             }
             $messages[] = "Успешно полученно";
         }
