@@ -101,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         $selectedForm = $_COOKIE['form_name']; // сохраняем то какая форма была открыта
     }
     setcookie('form_name', '', time() - 3600);
+    setcookie('getTable', '', time() - 3600);
 
     include('Scripts/forms.php'); // загрузил файл с формами
     include('Scripts/main-page.php'); // загружаю основную страницу
