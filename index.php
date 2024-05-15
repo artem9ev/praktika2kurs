@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     else if (!empty($_POST['form_name'])){
         setcookie('form_name', $_POST['form_name'], time() + 3600);
         setcookie('product', $_POST['product'], time() + 3600);
+        setcookie('fio', $_POST['fio'], time() + 3600);
     }
 
     header('Location: index.php'); // Делаем перенаправление.
@@ -24,10 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $password = pass;
     $dbname = user;
     $table_data = array(); // делаю массив для сохранения таблицы из бд
-    $tableTitle = '';
+    $tableTitle = ''; // строка для заголовка таблицы
 
     $tableToGet = '';
     $formName = '';
+    // проверяем нет ли текущих запросов от пользователя
     if (!empty($_COOKIE["getTable"])){
         $tableToGet = $_COOKIE["getTable"];
     }
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     try {
         $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        echo $tableToGet;
+        // обраюотка запросов на полный вывод таблиц
         if($tableToGet == 'providers'){
             $select = "SELECT * FROM Providers";
             $result = $db->query($select);
@@ -62,8 +64,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $table_data[] = array('ID', 'ID ТОВАРА', 'ID ПРОДАВЦА', 'ДАТА ПРОДАЖИ', 'КОЛИЧЕСТВО ПРОДАННЫХ ЕДИНИЦ ТОВАРА');
             $tableTitle = "Получена таблица продаж";
         }
+        // обработка экранных форм
         else if($formName == 'form_1'){
-
+            $name = '';
+            if (!empty($_COOKIE['fio'])){
+                $name = $_COOKIE['fio'];
+            }
+            $len = strlen($name) / 2;
+            $select = "SELECT * FROM Salesmans WHERE SUBSTR(name, 1, $len) = '$name';";
+            $result = $db->query($select);
+            $table_data[] = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ'); // добавляю первую строку в таблицу
+            $tableTitle = "Получены продавцы содержащие в имени: $name";
         }
         else if($formName == 'form_2'){
             $name = '';
@@ -80,6 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         else if($formName == 'form_3'){
     
         }
+
+        // если есть результат, то заполняю таблицу для выводв данных
         if(!empty($result)){
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
                 $newRow = array();
@@ -100,8 +113,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     if(!empty($_COOKIE['form_name'])){
         $selectedForm = $_COOKIE['form_name']; // сохраняем то какая форма была открыта
     }
-    setcookie('form_name', '', time() - 3600);
     setcookie('getTable', '', time() - 3600);
+    setcookie('form_name', '', time() - 3600);
+    setcookie('product', '', time() - 3600);
+    setcookie('fio', '', time() - 3600);
 
     include('Scripts/forms.php'); // загрузил файл с формами
     include('Scripts/main-page.php'); // загружаю основную страницу

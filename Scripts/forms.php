@@ -4,9 +4,9 @@ $forms = array(); ?>
     <form action="index.php" method="POST">
         <input type="hidden" name="form_name" value="form_1">
         <label>
-            <strong> Фамилия имя отчество:</strong>
+            <strong>Поиск продавцов:</strong>
             <br>
-            <input class="formfield" name="fio" type="text" placeholder="Ф32ИО" />
+            <input class="formfield" name="fio" type="text" placeholder="ФИО" />
         </label>
         <br>
         <input class="formfield" type="submit" value="Найти сотрудника" />

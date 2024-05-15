@@ -40,7 +40,7 @@
 
     <div class="main-content">
         <div class="links-container">
-            Вывести таблицы:
+            <h3>Вывести таблицы:</h3>
             <form class="getTableForm" action="index.php" method="POST">
                 <input type="hidden" name="getTable" value="providers">
                 <input class="link-item" type="submit" value="Отобразить производителей" />
@@ -57,8 +57,8 @@
                 <input type="hidden" name="getTable" value="sales">
                 <input class="link-item" type="submit" value="Отобразить продажи" />
             </form>
-            Экранные формы:
-            <button class="link-item" onclick="ShowForm('form_1')" name="button1">Form1</button>
+            <h3>Экранные формы:</h3>
+            <button class="link-item" onclick="ShowForm('form_1')" name="button1">Поиск сотрудников</button>
             <button class="link-item" onclick="ShowForm('form_2')" name="button2">Form2</button>
             <button class="link-item" onclick="ShowForm('form_3')" name="button3">Form3</button>
         </div>
@@ -70,6 +70,15 @@
                     } ?>
                 </div>
             </div>
+            <?php
+            if (!empty($messages)) {
+                print('<div id="messages">');
+                foreach ($messages as $message) {
+                    print($message);
+                }
+                print('</div>');
+            }
+            ?>
             <div class="table-item"> 
                 <div class="">
                     <?php echo $tableTitle ?>
@@ -88,15 +97,6 @@
     </div>
 
     <script>SelectFormOnGet()</script>
-    <?php
-    if (!empty($messages)) {
-      print('<div id="messages">');
-      foreach ($messages as $message) {
-        print($message);
-      }
-      print('</div>');
-    }
-    ?>
 </body>
 
 </html>
