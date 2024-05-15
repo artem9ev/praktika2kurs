@@ -3,13 +3,16 @@ header('Cache-Control: no-cache, must-revalidate');
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    if (!empty($_POST['form_name'])){
-        setcookie('form_name', $_POST['form_name'], time() + 3600);
+    if (!empty($_POST['getTable'])){
         setcookie('getTable', $_POST['getTable'], time() + 3600);
-        setcookie('product', $_POST['product'], time() + 3600);
-        header('Location: index.php'); // Делаем перенаправление.
-        exit;
     }
+    else if (!empty($_POST['form_name'])){
+        setcookie('form_name', $_POST['form_name'], time() + 3600);
+        setcookie('product', $_POST['product'], time() + 3600);
+    }
+
+    header('Location: index.php'); // Делаем перенаправление.
+    exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
