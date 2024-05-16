@@ -60,7 +60,7 @@
             <h3>Экранные формы:</h3>
             <button class="link-item" onclick="ShowForm('form_1')" name="button1">Поиск сотрудников по ФИО</button>
             <button class="link-item" onclick="ShowForm('form_2')" name="button2">Поиск сотрудников по комиссионным</button>
-            <button class="link-item" onclick="ShowForm('form_3')" name="button3">Form3</button>
+            <button class="link-item" onclick="ShowForm('form_3')" name="button3">Поиск товаров</button>
         </div>
         <div class="content-container">
             <div class="form-item">
@@ -84,7 +84,14 @@
                     <h2><?php echo $tableTitle ?></h2>
                     <table>
                         <?php 
-                        if(!empty($table_data) && !$isEmpty){
+                        if(!empty($table_data)){
+                            foreach($tableString as $row){
+                                echo '<tr>';
+                                foreach($row as $cell){
+                                    echo '<td>' . $cell . '</td>';
+                                }
+                                echo '</tr>';
+                            }
                             foreach($table_data as $row){ // прохожусь по массиву, доставая из него табличку
                                 echo '<tr>';
                                 foreach($row as $cell){

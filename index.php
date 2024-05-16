@@ -26,8 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $password = pass;
     $dbname = user;
     $table_data = array(); // делаю массив для сохранения таблицы из бд
+    $tableString = array();
     $tableTitle = ''; // строка для заголовка таблицы
-    $isEmpty = false;
+    $isGetted = false;
 
     $tableToGet = '';
     $formName = '';
@@ -45,25 +46,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         if($tableToGet == 'providers'){
             $select = "SELECT * FROM Providers";
             $result = $db->query($select);
-            $table_data[] = array('ID', 'НАЗВАНИЕ');
+            $tableString = array('ID', 'НАЗВАНИЕ');
             $tableTitle = "Получена таблица производителей";
         }
         else if($tableToGet == 'products'){
             $select = "SELECT * FROM Products";
             $result = $db->query($select);
-            $table_data[] = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ID ПОСТАВЩИКА');
+            $tableString = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ID ПОСТАВЩИКА');
             $tableTitle = "Получена таблица товаров";
         }
         else if($tableToGet == 'salesmans'){
             $select = "SELECT * FROM Salesmans";
             $result = $db->query($select);
-            $table_data[] = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ');
+            $tableString = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ');
             $tableTitle = "Получена таблица продавцов";
         }
         else if($tableToGet == 'sales'){
             $select = "SELECT * FROM Sales";
             $result = $db->query($select);
-            $table_data[] = array('ID', 'ID ТОВАРА', 'ID ПРОДАВЦА', 'ДАТА ПРОДАЖИ', 'КОЛИЧЕСТВО ПРОДАННЫХ ЕДИНИЦ ТОВАРА');
+            $tableString = array('ID', 'ID ТОВАРА', 'ID ПРОДАВЦА', 'ДАТА ПРОДАЖИ', 'КОЛИЧЕСТВО ПРОДАННЫХ ЕДИНИЦ ТОВАРА');
             $tableTitle = "Получена таблица продаж";
         }
         // обработка экранных форм
@@ -75,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $len = strlen($name) / 2;
             $select = "SELECT * FROM Salesmans WHERE SUBSTR(full_name, 1, $len) = '$name';";
             $result = $db->query($select);
-            $table_data[] = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ'); // добавляю первую строку в таблицу
+            $tableString = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ'); // добавляю первую строку в таблицу
             $tableTitle = "Получены продавцы содержащие в имени: '$name'";
         }
         else if($formName == 'form_2'){
@@ -85,24 +86,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             }
             $select = "SELECT * FROM Salesmans WHERE commision_percentage > $com;";
             $result = $db->query($select);
-            $table_data[] = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ'); // добавляю первую строку в таблицу
-            $tableTitle = "Получены продавцы с процентом комиссионных бельше чем: $com";
+            $tableString = array('ID', 'ФИО', 'ПРОЦЕНТ КОМИССИОННЫХ'); // добавляю первую строку в таблицу
+            $tableTitle = "Получены продавцы с процентом комиссионных больше чем: $com";
         }
         else if($formName == 'form_3'){
-    
+            $name = '';
+            if (!empty($_COOKIE['product'])){
+                $name = $_COOKIE['product'];
+            }
+            $len = strlen($name) / 2;
+            $select = "SELECT * FROM Products WHERE SUBSTR(name, 1, $len) = '$name';";
+            $result = $db->query($select);
+            $tableString = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ПРОИЗВОДИТЕЛЬ'); // добавляю первую строку в таблицу
+            $tableTitle = "Получены продавцы содержащие в имени: '$name'";
         }
 
         // если есть результат, то заполняю таблицу для выводв данных
         if(!empty($result)){
             while($row = $result->fetch()){ // прохожу каждую строку таблицы из бд, которую получил в результате запроса
                 $newRow = array();
-                if (empty($row)) { $isEmpty = true; break; }
                 for($i = 0; $i < count($row) / 2; $i++){
                     $newRow[] = $row[$i];
                 }
                 $table_data[] = $newRow;
             }
             $messages[] = "Успешно полученно";
+            $isGetted = true;
         }
     }
     catch(PDOException $e){

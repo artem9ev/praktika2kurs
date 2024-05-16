@@ -36,11 +36,11 @@ ob_start();
     <form action="index.php" method="POST">
         <input type="hidden" name="form_name" value="form_3">
         <label>
-            <h2><strong>Товар:</strong></h2><br>
-            <input class="formfield" name="job" type="text" placeholder="название должности" />
+            <h2><strong>Поиск товаров:</strong></h2><br>
+            <input class="formfield" name="product" type="text" placeholder="название должности" />
         </label>
         <br>
-        <input class="formfield" type="submit" value="Найти людей с должностью" />
+        <input class="formfield" type="submit" value="Найти товары" />
     </form>
 </div>
 <?php 
