@@ -16,6 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         setcookie('price1', $_POST['price1'], time() + 3600);
         setcookie('price2', $_POST['price2'], time() + 3600);
     }
+    else if (!empty($_POST['groupTable'])){
+        setcookie('groupTable', $_POST['groupTable'], time() + 3600);
+    }
 
     header('Location: index.php'); // Делаем перенаправление.
     exit;
@@ -36,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     $tableToGet = '';
     $formName = '';
+    $tableToGroup = '';
     // проверяем нет ли текущих запросов от пользователя
     if (!empty($_COOKIE["getTable"])){
         $tableToGet = $_COOKIE["getTable"];
@@ -131,6 +135,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $tableString = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ID ПРОИЗВОДИТЕЛЯ');
             $tableTitle = "Получены товары с ценами от '$price1' и до '$price2'";
         }
+        // Группировки таблиц
+        else if($tableToGroup == 'products'){
+            $select = "SELECT name, AVG(buy_price), AVG(sale_price) FROM Products GROUP BY name";
+            $result = $db->query($select);
+            $tableString = array('НАЗВАНИЕ', 'СРЕДНЯЯ ЦЕНА ЗАКУПКИ', 'СРЕДНЯЯ ЦЕНА ПРОДАЖИ');
+            $tableTitle = "Сгруппированная таблица продаж по названию товара";
+        }
+        else if($tableToGroup == 'sales'){
+            $select = "SELECT s.product_id, p.name, MAX(s.number_of_units), MIN(s.number_of_units) 
+            FROM Sales s, Products p GROUP BY s.product_id";
+            $result = $db->query($select);
+            $tableString = array('ID ТОВАРА', 'НАЗВАНИЕ ТОВАРА', 'МАКС. КОЛ-ВО ПРОДАННЫХ ЕД', 'МИН. КОЛ-ВО ПРОДАННЫХ ЕД');
+            $tableTitle = "Сгруппированная таблица продаж по коду товара";
+        }
 
         // если есть результат, то заполняю таблицу для выводв данных
         if(!empty($result)){
@@ -163,6 +181,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     setcookie('date2', '', time() - 3600);
     setcookie('price1', '', time() - 3600);
     setcookie('price2', '', time() - 3600);
+
+    setcookie('groupTable', '', time() - 3600);
 
     include('Scripts/forms.php'); // загрузил файл с формами
     include('Scripts/main-page.php'); // загружаю основную страницу

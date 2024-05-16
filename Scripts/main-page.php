@@ -40,7 +40,7 @@
 
     <div class="main-content">
         <div class="links-container">
-            <h3>Вывести таблицы:</h3>
+            <h3>Вывод таблиц:</h3>
             <form class="getTableForm" action="index.php" method="POST">
                 <input type="hidden" name="getTable" value="providers">
                 <input class="link-item" type="submit" value="Отобразить производителей" />
@@ -64,6 +64,14 @@
             <button class="link-item" onclick="ShowForm('form_4')" name="button4">Продажи по датам</button>
             <button class="link-item" onclick="ShowForm('form_5')" name="button5">Товары по ценам</button>
             <h3>Вывести сгруппированные данные:</h3>
+            <form class="getTableForm" action="index.php" method="POST">
+                <input type="hidden" name="groupTable" value="products">
+                <input class="link-item" type="submit" value="Сгруппировать товары по названиям" />
+            </form>
+            <form class="getTableForm" action="index.php" method="POST">
+                <input type="hidden" name="groupTable" value="sales">
+                <input class="link-item" type="submit" value="Сгруппировать продажи по товарам" />
+            </form>
         </div>
         <div class="content-container">
             <div class="form-item">
