@@ -11,7 +11,7 @@
     echo "<script>var selectedForm='$selectedForm'</script>"; 
     ?>
     <script>
-        var formlist = ['form_1', 'form_2', 'form_3', 'form_4', 'form_5', 'form_6', 'form_7'];
+        var formlist = ['form_1', 'form_2', 'form_3', 'form_4', 'form_5', 'form_6', 'form_7', 'form_8'];
         function SelectFormOnGet(){
             if (selectedForm!=''){
                 var formBlock = document.getElementById(selectedForm);
@@ -61,6 +61,8 @@
             <button class="link-item" onclick="ShowForm('form_1')" name="button1">Поиск сотрудников по ФИО</button>
             <button class="link-item" onclick="ShowForm('form_2')" name="button2">Поиск сотрудников по комиссионным</button>
             <button class="link-item" onclick="ShowForm('form_3')" name="button3">Поиск товаров</button>
+            <button class="link-item" onclick="ShowForm('form_3')" name="button3">Продажи по датам</button>
+            <h3>Вывести сгруппированные данные:</h3>
         </div>
         <div class="content-container">
             <div class="form-item">

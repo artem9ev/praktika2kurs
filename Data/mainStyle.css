@@ -2,6 +2,10 @@ html {
     min-height: 100%;
 }
 
+form {
+    width: 100%;
+}
+
 .invisible {
     display: none;
 }

@@ -11,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         setcookie('product', $_POST['product'], time() + 3600);
         setcookie('fio', $_POST['fio'], time() + 3600);
         setcookie('comission', $_POST['comission'], time() + 3600);
+        setcookie('date1', $_POST['date1'], time() + 3600);
+        setcookie('date2', $_POST['date2'], time() + 3600);
     }
 
     header('Location: index.php'); // Делаем перенаправление.
@@ -52,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         else if($tableToGet == 'products'){
             $select = "SELECT * FROM Products";
             $result = $db->query($select);
-            $tableString = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ID ПОСТАВЩИКА');
+            $tableString = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ID ПРОИЗВОДИТЕЛЯ');
             $tableTitle = "Получена таблица товаров";
         }
         else if($tableToGet == 'salesmans'){
@@ -100,6 +102,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $tableString = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ПРОИЗВОДИТЕЛЬ'); // добавляю первую строку в таблицу
             $tableTitle = "Получены продавцы содержащие в имени: '$name'";
         }
+        else if($formName == 'form_4'){
+            $date1 = '';
+            $date2 = '';
+            if (!empty($_COOKIE['date1']) && !empty($_COOKIE['date2'])){
+                $date1 = $_COOKIE['date1'];
+                $date2 = $_COOKIE['date2'];
+            }
+            $select = "SELECT p.name, o.name, p.buy_price, p.sale_price, s.number_of_units, sm.full_name, s.sale_date 
+            FROM Products p, Salesmans sm, Sales s, Provider o
+            WHERE (s.sale_date BETWEEN $date1 AND $date2) AND p.id = s.product_id AND sm.id = s.saleman_id AND o.id = p.provider_id;";
+            $result = $db->query($select);
+            $tableString = array('НАЗВАНИЕ', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'КОЛИЧЕСТВО', 'ПРОДАВЕЦ', 'ДАТА'); // добавляю первую строку в таблицу
+            $tableTitle = "Получены продажи с датами от '$date1' и до '$date2'";
+        }
 
         // если есть результат, то заполняю таблицу для выводв данных
         if(!empty($result)){
@@ -110,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 }
                 $table_data[] = $newRow;
             }
-            $messages[] = "Успешно полученно";
+            //$messages[] = "Успешно полученно";
             $isGetted = true;
         }
     }
@@ -128,6 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     setcookie('product', '', time() - 3600);
     setcookie('fio', '', time() - 3600);
     setcookie('comission', '', time() - 3600);
+    setcookie('date1', '', time() - 3600);
+    setcookie('date2', '', time() - 3600);
 
     include('Scripts/forms.php'); // загрузил файл с формами
     include('Scripts/main-page.php'); // загружаю основную страницу
