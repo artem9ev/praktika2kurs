@@ -112,9 +112,6 @@
                         else if($isGetted){
                             echo '<h2><strong>Нет результатов</strong></h2>';
                         }
-                        else {
-                            echo 'пусто';
-                        }
                         ?>
                     </table>
                 </div>
