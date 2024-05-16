@@ -47,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     if (!empty($_COOKIE["form_name"])){
         $formName = $_COOKIE["form_name"];
     }
+    if (!empty($_COOKIE["groupTable"])){
+        $formName = $_COOKIE["groupTable"];
+    }
     try {
         $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);

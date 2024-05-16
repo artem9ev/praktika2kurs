@@ -55,7 +55,7 @@ form {
     padding: 0px 10%;
     border-left: 1px solid #000000;
     margin-top: 20px;
-    min-height: 500px;
+    min-height: 100%;
 }
 
 .form-item {
