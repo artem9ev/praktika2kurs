@@ -53,8 +53,8 @@ ob_start();
         <input type="hidden" name="form_name" value="form_4">
         <label>
             <h2><strong>Продажи по датам:</strong></h2><br>
-            От: <input class="formfield" name="date1" type="date" placeholder="" /><br>
-            До: <input class="formfield" name="date2" type="date" placeholder="" />
+            От: <input class="formfield" name="date1" type="date" value="2024-05-01" required/><br>
+            До: <input class="formfield" name="date2" type="date" value="2024-05-31" required/>
         </label>
         <br>
         <input class="formfield" type="submit" value="Найти товары" />
@@ -69,8 +69,9 @@ ob_start();
     <form action="index.php" method="POST">
         <input type="hidden" name="form_name" value="form_3">
         <label>
-            <h2><strong>Поиск товаров:</strong></h2><br>
-            <input class="formfield" name="product" type="text" placeholder="название должности" />
+            <h2><strong>Товары по ценам:</strong></h2><br>
+            От: <input class="formfield" name="price1" type="text" placeholder="5000" required/><br>
+            До: <input class="formfield" name="price2" type="text" placeholder="15000" required/>
         </label>
         <br>
         <input class="formfield" type="submit" value="Найти товары" />

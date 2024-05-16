@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         setcookie('comission', $_POST['comission'], time() + 3600);
         setcookie('date1', $_POST['date1'], time() + 3600);
         setcookie('date2', $_POST['date2'], time() + 3600);
+        setcookie('price1', $_POST['price1'], time() + 3600);
+        setcookie('price2', $_POST['price2'], time() + 3600);
     }
 
     header('Location: index.php'); // Делаем перенаправление.
@@ -113,8 +115,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             FROM Products p, Salesmans sm, Sales s, Providers o
             WHERE p.id = s.product_id AND sm.id = s.salesman_id AND o.id = p.provider_id AND s.sale_date BETWEEN '$date1' AND '$date2';";
             $result = $db->query($select);
-            $tableString = array('НАЗВАНИЕ', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'КОЛИЧЕСТВО', 'ПРОДАВЕЦ', 'ДАТА'); // добавляю первую строку в таблицу
+            $tableString = array('НАЗВАНИЕ', 'ПРОИЗВОДИТЕЛЬ', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'КОЛИЧЕСТВО', 'ПРОДАВЕЦ', 'ДАТА'); // добавляю первую строку в таблицу
             $tableTitle = "Получены продажи с датами от '$date1' и до '$date2'";
+        }
+        else if($formName == 'form_5'){
+            $price1 = '';
+            $price2 = '';
+            if (!empty($_COOKIE['price1']) && !empty($_COOKIE['price2'])){
+                $price1 = $_COOKIE['price1'];
+                $price2 = $_COOKIE['price2'];
+            }
+            $select = "SELECT * FROM Products
+            WHERE sale_price BETWEEN '$price1' AND '$price2';";
+            $result = $db->query($select);
+            $tableString = array('ID', 'НАЗВАНИЕ', 'ВЕС', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'ID ПРОИЗВОДИТЕЛЯ');
+            $tableTitle = "Получены товары с ценами от '$price1' и до '$price2'";
         }
 
         // если есть результат, то заполняю таблицу для выводв данных
@@ -146,6 +161,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     setcookie('comission', '', time() - 3600);
     setcookie('date1', '', time() - 3600);
     setcookie('date2', '', time() - 3600);
+    setcookie('price1', '', time() - 3600);
+    setcookie('price2', '', time() - 3600);
 
     include('Scripts/forms.php'); // загрузил файл с формами
     include('Scripts/main-page.php'); // загружаю основную страницу
