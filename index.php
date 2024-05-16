@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             }
             $select = "SELECT p.name, o.name, p.buy_price, p.sale_price, s.number_of_units, sm.full_name, s.sale_date 
             FROM Products p, Salesmans sm, Sales s, Providers o
-            WHERE p.id = s.product_id AND sm.id = s.saleman_id AND o.id = p.provider_id AND s.sale_date BETWEEN '$date1' AND '$date2';";
+            WHERE p.id = s.product_id AND sm.id = s.salesman_id AND o.id = p.provider_id AND s.sale_date BETWEEN '$date1' AND '$date2';";
             $result = $db->query($select);
             $tableString = array('НАЗВАНИЕ', 'ЦЕНА ЗАКУПКИ', 'ЦЕНА ПРОДАЖИ', 'КОЛИЧЕСТВО', 'ПРОДАВЕЦ', 'ДАТА'); // добавляю первую строку в таблицу
             $tableTitle = "Получены продажи с датами от '$date1' и до '$date2'";
