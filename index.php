@@ -42,12 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $tableToGroup = '';
     // проверяем нет ли текущих запросов от пользователя
     if (!empty($_COOKIE["getTable"])){
+        echo '111<br>';
         $tableToGet = $_COOKIE["getTable"];
     }
     if (!empty($_COOKIE["form_name"])){
+        echo '222<br>';
         $formName = $_COOKIE["form_name"];
     }
     if (!empty($_COOKIE["groupTable"])){
+        echo '333<br>';
         $formName = $_COOKIE["groupTable"];
     }
     try {
