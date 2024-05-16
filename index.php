@@ -162,7 +162,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $newRow = array();
                 for($i = 0; $i < count($row) / 2; $i++){
                     $newRow[] = $row[$i];
+                    echo $row[$i] . " ";
                 }
+                echo '<br>';
                 $table_data[] = $newRow;
             }
             $isGetted = true;
