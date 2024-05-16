@@ -50,7 +50,7 @@ ob_start();
 ?>
 <div id="form_4" class="invisible">
     <form action="index.php" method="POST">
-        <input type="hidden" name="form_name" value="form_3">
+        <input type="hidden" name="form_name" value="form_4">
         <label>
             <h2><strong>Продажи по датам:</strong></h2><br>
             От: <input class="formfield" name="date1" type="date" placeholder="" /><br>
