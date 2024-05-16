@@ -85,13 +85,11 @@
                     <table>
                         <?php 
                         if(!empty($table_data)){
-                            foreach($tableString as $row){
-                                echo '<tr>';
-                                foreach($row as $cell){
-                                    echo '<td>' . $cell . '</td>';
-                                }
-                                echo '</tr>';
+                            echo '<tr>';
+                            foreach($tableString as $cell){
+                                echo '<td>' . $cell . '</td>';
                             }
+                            echo '</tr>';
                             foreach($table_data as $row){ // прохожусь по массиву, доставая из него табличку
                                 echo '<tr>';
                                 foreach($row as $cell){
