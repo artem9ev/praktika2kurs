@@ -42,15 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     $tableToGroup = '';
     // проверяем нет ли текущих запросов от пользователя
     if (!empty($_COOKIE["getTable"])){
-        echo '111<br>';
         $tableToGet = $_COOKIE["getTable"];
     }
     if (!empty($_COOKIE["form_name"])){
-        echo '222<br>';
         $formName = $_COOKIE["form_name"];
     }
     if (!empty($_COOKIE["groupTable"])){
-        echo '333<br>';
         $tableToGroup = $_COOKIE["groupTable"];
     }
     try {
@@ -162,9 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $newRow = array();
                 for($i = 0; $i < count($row) / 2; $i++){
                     $newRow[] = $row[$i];
-                    echo $row[$i] . " ";
                 }
-                echo '<br>';
                 $table_data[] = $newRow;
             }
             $isGetted = true;

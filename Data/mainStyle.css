@@ -23,6 +23,7 @@ form {
     margin: 0 auto;
     /*центрируем ее*/
     background: darkgray;
+    min-height: 100%;
 }
 
 .links-container {
