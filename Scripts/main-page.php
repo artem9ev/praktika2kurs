@@ -61,7 +61,7 @@
             <button class="link-item" onclick="ShowForm('form_1')" name="button1">Поиск сотрудников по ФИО</button>
             <button class="link-item" onclick="ShowForm('form_2')" name="button2">Поиск сотрудников по комиссионным</button>
             <button class="link-item" onclick="ShowForm('form_3')" name="button3">Поиск товаров</button>
-            <button class="link-item" onclick="ShowForm('form_3')" name="button3">Продажи по датам</button>
+            <button class="link-item" onclick="ShowForm('form_4')" name="button4">Продажи по датам</button>
             <h3>Вывести сгруппированные данные:</h3>
         </div>
         <div class="content-container">
