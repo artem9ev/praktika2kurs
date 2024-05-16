@@ -67,7 +67,7 @@ ob_start();
 ?>
 <div id="form_5" class="invisible">
     <form action="index.php" method="POST">
-        <input type="hidden" name="form_name" value="form_3">
+        <input type="hidden" name="form_name" value="form_5">
         <label>
             <h2><strong>Товары по ценам:</strong></h2><br>
             От: <input class="formfield" name="price1" type="text" placeholder="5000" required/><br>
@@ -84,7 +84,7 @@ ob_start();
 ?>
 <div id="form_6" class="invisible">
     <form action="index.php" method="POST">
-        <input type="hidden" name="form_name" value="form_3">
+        <input type="hidden" name="form_name" value="form_6">
         <label>
             <h2><strong>Поиск товаров:</strong></h2><br>
             <input class="formfield" name="product" type="text" placeholder="название должности" />
@@ -100,7 +100,7 @@ ob_start();
 ?>
 <div id="form_7" class="invisible">
     <form action="index.php" method="POST">
-        <input type="hidden" name="form_name" value="form_3">
+        <input type="hidden" name="form_name" value="form_7">
         <label>
             <h2><strong>Поиск товаров:</strong></h2><br>
             <input class="formfield" name="product" type="text" placeholder="название должности" />
@@ -116,7 +116,7 @@ ob_start();
 ?>
 <div id="form_8" class="invisible">
     <form action="index.php" method="POST">
-        <input type="hidden" name="form_name" value="form_3">
+        <input type="hidden" name="form_name" value="form_8">
         <label>
             <h2><strong>Поиск товаров:</strong></h2><br>
             <input class="formfield" name="product" type="text" placeholder="название должности" />
