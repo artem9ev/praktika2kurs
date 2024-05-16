@@ -149,8 +149,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
             $tableTitle = "Сгруппированная таблица продаж по названию товара";
         }
         else if($tableToGroup == 'sales'){
-            $select = "SELECT s.product_id, p.name, MAX(s.number_of_units), MIN(s.number_of_units) 
-            FROM Sales s, Products p GROUP BY s.product_id";
+            $select = "SELECT product_id, MAX(number_of_units), MIN(number_of_units) 
+            FROM Sales GROUP BY product_id";
             $result = $db->query($select);
             $tableString = array('ID ТОВАРА', 'НАЗВАНИЕ ТОВАРА', 'МАКС. КОЛ-ВО ПРОДАННЫХ ЕД', 'МИН. КОЛ-ВО ПРОДАННЫХ ЕД');
             $tableTitle = "Сгруппированная таблица продаж по коду товара";
@@ -165,7 +165,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
                 }
                 $table_data[] = $newRow;
             }
-            //$messages[] = "Успешно полученно";
             $isGetted = true;
         }
     }
