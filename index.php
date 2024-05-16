@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     }
     if (!empty($_COOKIE["groupTable"])){
         echo '333<br>';
-        $formName = $_COOKIE["groupTable"];
+        $tableToGroup = $_COOKIE["groupTable"];
     }
     try {
         $db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password,
@@ -143,18 +143,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         }
         // Группировки таблиц
         else if($tableToGroup == 'products'){
-            echo '$$$$$$$$$$$$$$$$$';
             $select = "SELECT name, AVG(buy_price), AVG(sale_price) FROM Products GROUP BY name";
             $result = $db->query($select);
             $tableString = array('НАЗВАНИЕ', 'СРЕДНЯЯ ЦЕНА ЗАКУПКИ', 'СРЕДНЯЯ ЦЕНА ПРОДАЖИ');
             $tableTitle = "Сгруппированная таблица продаж по названию товара";
         }
         else if($tableToGroup == 'sales'){
-            echo '(((((((((((((((';
             $select = "SELECT product_id, MAX(number_of_units), MIN(number_of_units) 
             FROM Sales GROUP BY product_id";
             $result = $db->query($select);
-            $tableString = array('ID ТОВАРА', 'НАЗВАНИЕ ТОВАРА', 'МАКС. КОЛ-ВО ПРОДАННЫХ ЕД', 'МИН. КОЛ-ВО ПРОДАННЫХ ЕД');
+            $tableString = array('ID ТОВАРА', 'МАКС. КОЛ-ВО ПРОДАННЫХ ЕД', 'МИН. КОЛ-ВО ПРОДАННЫХ ЕД');
             $tableTitle = "Сгруппированная таблица продаж по коду товара";
         }
 
